@@ -39,7 +39,7 @@ class RawDocs():
         contraction_split: whether to split contractions into constituent words
         If not, remove all apostrophes.
         """
-        print("NICK!!! THIS IS A TEST!")
+
         if isinstance(doc_data, str):
             try:
                 with codecs.open(doc_data, 'r', 'utf-8') as f:

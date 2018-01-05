@@ -2,6 +2,9 @@ import sys
 from setuptools import setup
 from setuptools.extension import Extension
 
+### unit tests for this package
+import topicmodel_tests
+
 ### set include dirs for numpy and gsl
 
 try:
@@ -70,24 +73,6 @@ else:
         )
     ]
 
-
-
-
-
-#ext = Extension("topicmodels.samplers.samplers_lda",
-#                 ["topicmodels/samplers/samplers_lda.pyx"],
-#                 include_dirs=[numpy.get_include(), include_gsl_dir],
-#                 library_dirs=[lib_gsl_dir],
-#                 libraries=["gsl", "gslcblas", "m"])
-
-########
-# uncomment code block below to use numpy only without GSL
-########
-
-#ext = Extension("topicmodels.samplers.samplers_lda",
-#                 ["topicmodels/samplers/samplers_lda.pyx"],
-#                 include_dirs=[numpy.get_include()])
-
 setup(name = "topic-modelling-tools",
       version="0.1dev",
       author="Stephen Hansen",
@@ -98,11 +83,12 @@ setup(name = "topic-modelling-tools",
       package_data={'topicmodels': ['*.txt']},
       cmdclass=cmdclass,
       license="LICENSE.txt",
-      long_description = open("README.txt").read(),
+      long_description = open("README.md").read(),
       install_requires=[
           "numpy >= 1.13.3",
           "nltk >= 3.2.4",
           "pandas >= 0.20.3",
           "scipy >= 0.19.1",
-      ]
+      ],
+      test_suite = 'topicmodel_tests.my_test_suite'
 )

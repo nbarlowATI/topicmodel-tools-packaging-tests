@@ -66,17 +66,12 @@ must be passed to RawDocs")
 
         if contraction_split:
             for k, v in preprocess_data.contractions.items():
-##   NB python3         for k, v in preprocess_data.contractions.iteritems():
                     self.docs = list(map(lambda x: re.sub(k, v, x), self.docs))
-##  NB python3                    self.docs = map(lambda x: re.sub(k, v, x), self.docs)                    
         else:
-##  NB python3           self.docs = map(lambda x: re.sub(u'[\u2019\']', '', x), self.docs)
             self.docs = list(map(lambda x: re.sub(u'[\u2019\']', '', x), self.docs))
 
-###  NB python3 fix       self.N = len(self.docs)
         self.N = len(list(self.docs))        
         self.tokens = list(map(wordpunct_tokenize, self.docs))
-## NB python3        self.tokens = map(wordpunct_tokenize, self.docs)        
 
     def phrase_replace(self, replace_dict):
 
@@ -86,11 +81,9 @@ must be passed to RawDocs")
 
         def r(tokens):
                 text = ' ' + ' '.join(tokens)
-##                for k, v in replace_dict.iteritems():
                 for k, v in replace_dict.items():                    
                     text = text.replace(" " + k + " ", " " + v + " ")
                 return text.split()
-## NB python3        self.stems = map(r, self.stems)
         self.stems = list(map(r, self.stems))        
 
     def token_clean(self, length, numbers=True):
@@ -109,10 +102,8 @@ must be passed to RawDocs")
 
         if numbers:
             self.tokens = list(map(clean1, self.tokens))
-## NB python3            self.tokens = map(clean1, self.tokens)            
         else:
             self.tokens = list(map(clean2, self.tokens))
-## NB python3            self.tokens = map(clean2, self.tokens)            
 
     def stem(self):
 
@@ -122,7 +113,6 @@ must be passed to RawDocs")
 
         def s(tokens):
             return [PorterStemmer().stem(t) for t in tokens]
-## NB python3        self.stems = map(s, self.tokens)
         self.stems = list(map(s, self.tokens))
 
     def bigram(self, items):
@@ -133,14 +123,11 @@ must be passed to RawDocs")
 
         def bigram_join(tok_list):
             text = nltk.bigrams(tok_list)
-## NB python3            return map(lambda x: x[0] + '.' + x[1], text)
             return list(map(lambda x: x[0] + '.' + x[1], text))
 
         if items == "tokens":
-## NB python3            self.bigrams = map(bigram_join, self.tokens)
             self.bigrams = list(map(bigram_join, self.tokens))
         elif items == "stems":
-## NB python3            self.bigrams = map(bigram_join, self.stems)
             self.bigrams = list(map(bigram_join, self.stems))
         else:
             raise ValueError("Items must be either \'tokens\' or \'stems\'.")
@@ -156,10 +143,8 @@ must be passed to RawDocs")
             return [t for t in tokens if t not in self.stopwords]
 
         if items == 'tokens':
-## NB python3            self.tokens = map(remove, self.tokens)
             self.tokens = list(map(remove, self.tokens))
         elif items == 'stems':
-## NB python3            self.stems = map(remove, self.stems)
             self.stems = list(map(remove, self.stems))
         else:
             raise ValueError("Items must be either \'tokens\' or \'stems\'.")
@@ -180,7 +165,6 @@ must be passed to RawDocs")
         agg = itertools.chain(*v)
         counts = collections.Counter(agg)
 
-## NB python3        v_unique = map(lambda x: set(x), v)
         v_unique = list(map(lambda x: set(x), v))
         agg_d = itertools.chain(*v_unique)
         counts_d = collections.Counter(agg_d)
@@ -229,10 +213,8 @@ must be passed to RawDocs")
             raise ValueError("Rank must be either \'df\' or \'tfidf\'.")
 
         if items == 'tokens':
-## NB python3            self.tokens = map(remove, self.tokens)
             self.tokens = list(map(remove, self.tokens))
         elif items == 'stems':
-## NB python3            self.stems = map(remove, self.stems)
             self.stems = list(map(remove, self.stems))
         else:
             raise ValueError("Items must be either \'tokens\' or \'stems\'.")

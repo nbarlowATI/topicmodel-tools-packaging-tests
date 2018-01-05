@@ -8,11 +8,6 @@ import codecs
 import itertools
 import numpy as np
 import pandas as pd
-# Uncomment for web applications/servers
-# import matplotlib
-# matplotlib.use('Agg')
-#import matplotlib.pyplot as plt
-##from scipy.cluster.hierarchy import dendrogram, linkage
 
 from topicmodels.samplers import samplers_lda
 

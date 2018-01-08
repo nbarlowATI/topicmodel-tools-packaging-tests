@@ -46,15 +46,19 @@ password: TESTPYPI_PASSWD
 (substituting in the usernames/passwords you used when registering with (Test)PyPi).
 
 * Then you can upload with the command:
+
 `twine upload dist/topic-modelling-tools-0.1.dev0.tar.gz -r testpypi` (for TestPyPi)
+
 `twine upload dist/topic-modelling-tools-0.1.dev0.tar.gz -r pypi` (for PyPi).
 
 After this, people should be able to install your package, with e.g.
+
 `pip install topic-modelling-tools` (from regular PyPi)
-`pip install --index-url https://test.pypi.org/simple/topic-modelling-tools` from TestPyPi.
+
+`pip install --index-url https://test.pypi.org/simple/topic-modelling-tools` (from TestPyPi).
 
 Note that if there are dependencies on other python packages, these packages might not be present in the TestPyPi
-repository, in which case pip installing from there might fail.
+repository, in which case pip install-ing from there might fail.
 
 ## Unit tests
 
@@ -69,10 +73,21 @@ Stephen's original text-mining-tutorial package made use of GSL for faster rando
 I have not yet managed to get setup.py to handle this correctly even for OSX (and it will be even more difficult
 to get it working on multiple platforms), so the current implementation just uses numpy.
 
+Code has been modified in order to work in both python2 and python3 - the main changes involved were:
+* Changing `xrange` to `range` in many places.
+* Changing `iteritems` to `items` in a few places.
+* Changing `map(func,list)` to `list(map(func,list))` in many places.
+
+Unit tests have been written to test the reading in of a text file, the creation of the `docsobj` preprocessing
+object and some of its functionality (removing stopwords, stemming), and the creation and operation of the `ldaobj`
+sampling object.
+
 A "wheel" for OSX, and a source dist for other platforms, have been uploaded to PyPi.  Installing via `pip install`
 has been tested on a couple of different Macs, on an Ubuntu 16.04 VM, and on a Windows Server 2016 VM.  For
 the Windows installation, it was necessary to install the Microsoft Visual Studio C++ Compiler (to build the
 library from the Cython file).
+(Note that pip install from TestPyPi fails, as various python dependencies are not present in TestPyPi).
+
 
 
 

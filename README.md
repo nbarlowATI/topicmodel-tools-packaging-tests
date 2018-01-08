@@ -26,7 +26,8 @@ or https://testpypi.python.org/pypi for TestPyPi (separate repository for testin
 
 * Create a .pypirc file in your home directory with content something like:
 
-`[distutils]
+```
+[distutils]
 index-servers=
     pypi
     testpypi
@@ -41,7 +42,7 @@ password: PYPI_PASSWD
 repository: https://test.pypi.org/legacy/
 username: TESTPYPI_USERNAME
 password: TESTPYPI_PASSWD
-`
+```
 (substituting in the usernames/passwords you used when registering with (Test)PyPi).
 
 * Then you can upload with the command:

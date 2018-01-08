@@ -1,10 +1,10 @@
 # topicmodel-tools-packaging-tests
-Playing around with Stephen Hansen's text-mining-tutorial code, with the aim of getting the
+Playing around with Stephen Hansen's text-mining-tutorial code (original repo https://github.com/sekhansen/text-mining-tutorial ), with the aim of getting the
 non-user-facing bits into a PyPi package
 
 ## Building source and binary distributions.
 
-Source distribution can be made by running
+Source distribution can be made by running (from this package's base directory)
 `python setup.py sdist`
 
 This creates a tar.gz file in the dist/ directory that can then be uploaded to e.g. PyPi

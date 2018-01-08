@@ -138,7 +138,8 @@ def sampler(DTYPE_t [:] docs, DTYPE_t [:] tokens, DTYPE_t [:] topics,
         if iter - burnin > 0 and (iter - burnin) % thinning == 0: 
             sampled_topics[sample, ::1] = topics
             sample += 1
-        print("Iteration %d of (collapsed) Gibbs sampling" % iter)
+        if iter % 10 == 0:
+            print("Iteration %d of (collapsed) Gibbs sampling" % iter)
 
     free(p)
 

@@ -71,6 +71,7 @@ setup(name = "topic-modelling-tools",
           "nltk >= 3.2.4",
           "pandas >= 0.20.3",
           "scipy >= 0.19.1",
+          "Cython >= 0.20.1"
       ],
       test_suite = 'topicmodel_tests.my_test_suite'
 )

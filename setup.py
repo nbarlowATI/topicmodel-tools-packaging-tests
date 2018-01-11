@@ -23,6 +23,7 @@ else:
 
 try:
     from Cython.Distutils import build_ext
+    from Cython.Build import cythonize
 except ImportError:
     use_cython = False
 else:
@@ -41,6 +42,7 @@ if use_cython:
                   ],
         )
     ]
+    ext_modules = cythonize(ext_modules)
     cmdclass.update({ 'build_ext': build_ext })
 else:
     ext_modules += [
